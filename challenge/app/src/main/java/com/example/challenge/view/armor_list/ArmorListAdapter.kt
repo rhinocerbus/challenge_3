@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.widget.ImageViewCompat
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.challenge.R
 import com.example.challenge.model.ArmorPiece
 import com.example.challenge.model.ArmorType
+import java.lang.ref.WeakReference
 
 class ArmorListAdapter: RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHolder>() {
 
@@ -24,6 +26,8 @@ class ArmorListAdapter: RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHold
     }
 
     private val armorPieces: MutableList<ArmorPiece> = mutableListOf()
+
+    val selectionUpdate = MutableLiveData<ArmorPiece>()
 
     init {
         setHasStableIds(true)
@@ -55,14 +59,14 @@ class ArmorListAdapter: RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHold
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArmorPieceViewHolder {
-        return ArmorPieceViewHolder(LayoutInflater.from(parent.context).inflate(ArmorPieceViewHolder.VIEW_ID, null))
+        return ArmorPieceViewHolder(LayoutInflater.from(parent.context).inflate(ArmorPieceViewHolder.VIEW_ID, null), selectionUpdate)
     }
 
     override fun onBindViewHolder(holder: ArmorPieceViewHolder, position: Int) {
         holder.bindView(armorPieces[position])
     }
 
-    class ArmorPieceViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ArmorPieceViewHolder(itemView: View, ld: MutableLiveData<ArmorPiece>): RecyclerView.ViewHolder(itemView) {
         companion object {
             val VIEW_ID = R.layout.item_armor_piece
         }
@@ -73,6 +77,13 @@ class ArmorListAdapter: RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHold
         private val baseDefense: TextView = itemView.findViewById(R.id.armor_defense)
 
         private lateinit var armorPiece: ArmorPiece
+        private var ldHandle: WeakReference<MutableLiveData<ArmorPiece>> = WeakReference(ld)
+
+        init {
+            itemView.setOnClickListener {
+                    ldHandle.get()?.postValue(armorPiece)
+            }
+        }
 
         fun bindView(armorPiece: ArmorPiece) {
             this.armorPiece = armorPiece

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/margin_medium"
-    android:paddingRight="@dimen/margin_medium">
+    android:paddingRight="@dimen/margin_medium"
+    android:background="?selectableItemBackground">
 
     <ImageView
         android:id="@+id/type_icon"

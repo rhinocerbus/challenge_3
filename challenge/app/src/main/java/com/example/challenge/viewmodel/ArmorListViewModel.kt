@@ -17,23 +17,22 @@ class ArmorListViewModel : ViewModel() {
             NAME,
             RARITY,
             RANK
-
         }
 
         enum class FilterType {
             TYPE
-
         }
     }
 
-
-
-
-
+    var firstLoad = true
+        private set
     private val armorListData: MutableList<ArmorPiece> = mutableListOf()
     private val _armorList = MutableLiveData<List<ArmorPiece>>()
     val armorList: LiveData<List<ArmorPiece>>
         get() = _armorList
+
+
+    private var filterTerm: String? = null
 
     fun loadArmorData() {
         viewModelScope.launch {
@@ -41,12 +40,33 @@ class ArmorListViewModel : ViewModel() {
 
             val a = ArmorRepository.fetchArmorData(this)
             armorListData.addAll(a)
+            firstLoad = false
             _armorList.postValue(armorListData)
         }
+    }
+
+    fun updateFilterTerm(term: String?) {
+        if(filterTerm == term) return
+
+        filterTerm = term
+        if(filterTerm == null) {
+            _armorList.postValue(armorListData)
+            return
+        }
+
+        val filtered = armorListData.filter {
+            it.name.contains(filterTerm!!, true)
+        }
+        _armorList.postValue(filtered)
+    }
+
+    private fun updateFilteredArmor() {
+
     }
 
     override fun onCleared() {
         super.onCleared()
         armorListData.clear()
+        firstLoad = true
     }
 }
