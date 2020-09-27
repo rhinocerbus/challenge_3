@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        style="@style/ItemSubText"
+        style="@style/TextSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Has modifiers..." />
@@ -25,7 +25,7 @@
 
             <CheckBox
                 android:id="@+id/res_fire"
-                style="@style/ItemSubText"
+                style="@style/TextSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -33,7 +33,7 @@
 
             <CheckBox
                 android:id="@+id/res_water"
-                style="@style/ItemSubText"
+                style="@style/TextSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -41,7 +41,7 @@
 
             <CheckBox
                 android:id="@+id/res_ice"
-                style="@style/ItemSubText"
+                style="@style/TextSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -49,7 +49,7 @@
 
             <CheckBox
                 android:id="@+id/res_thunder"
-                style="@style/ItemSubText"
+                style="@style/TextSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -57,7 +57,7 @@
 
             <CheckBox
                 android:id="@+id/res_dragon"
-                style="@style/ItemSubText"
+                style="@style/TextSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -72,7 +72,7 @@
 
             <CheckBox
                 android:id="@+id/dmg_fire"
-                style="@style/ItemSubText"
+                style="@style/TextSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -80,7 +80,7 @@
 
             <CheckBox
                 android:id="@+id/dmg_water"
-                style="@style/ItemSubText"
+                style="@style/TextSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -88,7 +88,7 @@
 
             <CheckBox
                 android:id="@+id/dmg_ice"
-                style="@style/ItemSubText"
+                style="@style/TextSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -96,7 +96,7 @@
 
             <CheckBox
                 android:id="@+id/dmg_thunder"
-                style="@style/ItemSubText"
+                style="@style/TextSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -104,7 +104,7 @@
 
             <CheckBox
                 android:id="@+id/dmg_dragon"
-                style="@style/ItemSubText"
+                style="@style/TextSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"

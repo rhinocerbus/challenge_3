@@ -1,72 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/margin_medium"
-    android:paddingRight="@dimen/margin_medium"
-    android:background="?selectableItemBackground">
+    app:cardBackgroundColor="@color/colorItemBackground"
+    app:cardUseCompatPadding="true">
 
-    <ImageView
-        android:id="@+id/type_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_alignTop="@id/armor_name"
-        android:layout_alignBottom="@id/stats_row"
-        android:scaleType="fitCenter"
-        android:minWidth="24dp"
-        android:maxWidth="60dp"
-        tools:src="@drawable/ic_chest" />
-
-    <TextView
-        android:id="@+id/armor_name"
-        style="@style/ItemMainText"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_medium"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:layout_toEndOf="@id/type_icon"
-        tools:text="Leather Armor" />
+        android:background="?selectableItemBackground"
+        android:padding="@dimen/margin_small">
 
-    <LinearLayout
-        android:id="@+id/stats_row"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_medium"
-        android:layout_marginTop="@dimen/margin_small"
-        android:layout_marginBottom="@dimen/margin_medium"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        android:layout_toEndOf="@id/type_icon"
-        android:layout_below="@id/armor_name">
+        <ImageView
+            android:id="@+id/type_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_alignTop="@id/armor_name"
+            android:layout_alignBottom="@id/stats_row"
+            android:maxWidth="60dp"
+            android:minWidth="24dp"
+            android:scaleType="fitCenter"
+            tools:src="@drawable/ic_chest" />
 
         <TextView
-            android:id="@+id/armor_rank"
-            style="@style/ItemSubText"
-            android:layout_width="0dp"
+            android:id="@+id/armor_name"
+            style="@style/TextMedium.Item"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:text="HIGH" />
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_toEndOf="@id/type_icon"
+            tools:text="Leather Armor" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/stats_row"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_shield" />
+            android:layout_below="@id/armor_name"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:layout_toEndOf="@id/type_icon"
+            android:orientation="horizontal"
+            android:weightSum="8">
 
             <TextView
-                android:id="@+id/armor_defense"
-                style="@style/ItemSubText"
-                android:layout_width="wrap_content"
+                style="@style/TextSmall.Item"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="56+" />
-        </LinearLayout>
-    </LinearLayout>
+                android:layout_weight="1"
+                android:text="Rank: " />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/armor_rank"
+                style="@style/TextSmall.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="true"
+                tools:text="HIGH" />
+
+            <TextView
+                style="@style/TextSmall.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Rarity: " />
+
+            <TextView
+                android:id="@+id/armor_rarity"
+                style="@style/TextSmall.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="true"
+                tools:text="10" />
+
+            <TextView
+                android:id="@+id/slots"
+                style="@style/TextSmall.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Slots: " />
+
+            <RelativeLayout
+                android:id="@+id/slot1"
+                android:layout_width="0dp"
+                android:layout_height="16dp"
+                android:layout_weight=".5">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_deco" />
+
+                <TextView
+                    android:id="@+id/slot1_text"
+                    style="@style/TextSmallExtra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    tools:text="4" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/slot2"
+                android:layout_width="0dp"
+                android:layout_height="16dp"
+                android:layout_weight=".5">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_deco" />
+
+                <TextView
+                    android:id="@+id/slot2_text"
+                    style="@style/TextSmallExtra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    tools:text="4" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/slot3"
+                android:layout_width="0dp"
+                android:layout_height="16dp"
+                android:layout_weight=".5">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_deco" />
+
+                <TextView
+                    android:id="@+id/slot3_text"
+                    style="@style/TextSmallExtra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    tools:text="4" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:layout_toEndOf="@id/type_icon"
+            android:layout_below="@id/stats_row"
+            android:src="@drawable/ic_shield" />
+
+        <LinearLayout
+            android:id="@+id/defense_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stats_row"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:layout_toEndOf="@id/type_icon"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/armor_defense_base"
+                    style="@style/TextSmall.Item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="56+" />
+
+                <TextView
+                    style="@style/TextSmall.Item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_tiny"
+                    android:text="Max:" />
+
+                <TextView
+                    android:id="@+id/armor_defense_max"
+                    style="@style/TextSmall.Item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_tiny"
+                    tools:text="56+" />
+
+                <TextView
+                    style="@style/TextSmall.Item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_tiny"
+                    android:text="Aug:" />
+
+                <TextView
+                    android:id="@+id/armor_defense_aug"
+                    style="@style/TextSmall.Item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_tiny"
+                    tools:text="56+" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextSmall.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="Res:" />
+
+            <TextView
+                android:id="@+id/armor_res_fire"
+                style="@style/TextSmall.Fire"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:textAlignment="center"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/armor_res_water"
+                style="@style/TextSmall.Water"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:textAlignment="center"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/armor_res_ice"
+                style="@style/TextSmall.Ice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:textAlignment="center"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/armor_res_thunder"
+                style="@style/TextSmall.Thunder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:textAlignment="center"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/armor_res_dragon"
+                style="@style/TextSmall.Dragon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:textAlignment="center"
+                tools:text="0" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

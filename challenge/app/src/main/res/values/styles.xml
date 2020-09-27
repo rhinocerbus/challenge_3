@@ -8,14 +8,47 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="ItemMainText" parent="TextAppearance.AppCompat.Title">
+    <style name="TextMedium" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">@dimen/text_medium</item>
     </style>
 
-    <style name="ItemSubText" parent="TextAppearance.AppCompat.Title">
+    <style name="TextMedium.Item" parent="TextMedium">
+        <item name="android:textColor">@color/colorItemText</item>
+    </style>
+
+    <style name="TextSmall" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="TextSmall.Item" parent="TextSmall">
+        <item name="android:textColor">@color/colorItemText</item>
+    </style>
+
+    <style name="TextSmall.Fire" parent="TextSmall">
+        <item name="android:textColor">@color/colorFire</item>
+    </style>
+
+    <style name="TextSmall.Water" parent="TextSmall">
+        <item name="android:textColor">@color/colorWater</item>
+    </style>
+
+    <style name="TextSmall.Ice" parent="TextSmall">
+        <item name="android:textColor">@color/colorIce</item>
+    </style>
+
+    <style name="TextSmall.Thunder" parent="TextSmall">
+        <item name="android:textColor">@color/colorThunder</item>
+    </style>
+
+    <style name="TextSmall.Dragon" parent="TextSmall">
+        <item name="android:textColor">@color/colorDragon</item>
+    </style>
+
+    <style name="TextSmallExtra" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/text_small_extra</item>
     </style>
 
 </resources>
