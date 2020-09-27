@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/ItemSubText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Has modifiers..." />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/res_fire"
+                style="@style/ItemSubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Fire Resist" />
+
+            <CheckBox
+                android:id="@+id/res_water"
+                style="@style/ItemSubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Water Resist" />
+
+            <CheckBox
+                android:id="@+id/res_ice"
+                style="@style/ItemSubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Ice Resist" />
+
+            <CheckBox
+                android:id="@+id/res_thunder"
+                style="@style/ItemSubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Thunder Resist" />
+
+            <CheckBox
+                android:id="@+id/res_dragon"
+                style="@style/ItemSubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Dragon Resist" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/dmg_fire"
+                style="@style/ItemSubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Fire Damage" />
+
+            <CheckBox
+                android:id="@+id/dmg_water"
+                style="@style/ItemSubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Water Damage" />
+
+            <CheckBox
+                android:id="@+id/dmg_ice"
+                style="@style/ItemSubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Ice Damage" />
+
+            <CheckBox
+                android:id="@+id/dmg_thunder"
+                style="@style/ItemSubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Thunder Damage" />
+
+            <CheckBox
+                android:id="@+id/dmg_dragon"
+                style="@style/ItemSubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Dragon Damage" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

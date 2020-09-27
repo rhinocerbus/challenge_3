@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challenge.R
 import com.example.challenge.model.ArmorPiece
+import com.example.challenge.view.armor_list.ArmorDetailsBottomSheet
 import com.example.challenge.view.armor_list.ArmorListAdapter
+import com.example.challenge.view.armor_list.FilterOptionsDialogSheet
 import com.example.challenge.viewmodel.ArmorListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.serialization.ImplicitReflectionSerializer
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         recycler.adapter = adapter
         adapter.updateViewType(ArmorListAdapter.Companion.DISPLAYTYPE.ROWS, recycler)
         adapter.selectionUpdate.observe(this, Observer {
-            showItemDetails()
+            ArmorDetailsBottomSheet.show(this.supportFragmentManager, viewModel, it)
         })
 
         Glide.with(this).asGif().load(R.raw.cat).into(loading_state);
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         filter_options.setOnClickListener {
-            
+            FilterOptionsDialogSheet.show(this.supportFragmentManager, viewModel)
         }
     }
 
@@ -77,9 +79,5 @@ class MainActivity : AppCompatActivity() {
         } else {
             loading_state.visibility = View.GONE
         }
-    }
-
-    fun showItemDetails() {
-
     }
 }
