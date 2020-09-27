@@ -28,7 +28,7 @@
                 style="@style/ItemSubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="Fire Resist" />
 
             <CheckBox
@@ -36,7 +36,7 @@
                 style="@style/ItemSubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="Water Resist" />
 
             <CheckBox
@@ -44,7 +44,7 @@
                 style="@style/ItemSubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="Ice Resist" />
 
             <CheckBox
@@ -52,7 +52,7 @@
                 style="@style/ItemSubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="Thunder Resist" />
 
             <CheckBox
@@ -60,7 +60,7 @@
                 style="@style/ItemSubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="Dragon Resist" />
         </LinearLayout>
 
@@ -75,7 +75,7 @@
                 style="@style/ItemSubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="Fire Damage" />
 
             <CheckBox
@@ -83,7 +83,7 @@
                 style="@style/ItemSubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="Water Damage" />
 
             <CheckBox
@@ -91,7 +91,7 @@
                 style="@style/ItemSubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="Ice Damage" />
 
             <CheckBox
@@ -99,7 +99,7 @@
                 style="@style/ItemSubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="Thunder Damage" />
 
             <CheckBox
@@ -107,7 +107,7 @@
                 style="@style/ItemSubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="Dragon Damage" />
         </LinearLayout>
     </LinearLayout>

@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.challenge.model.ArmorListFilterCriteria
 import com.example.challenge.model.ArmorPiece
 import com.example.challenge.model.ArmorRepository
+import com.example.challenge.model.ElementType
 import kotlinx.coroutines.launch
 
 class ArmorListViewModel : ViewModel() {
@@ -30,7 +32,7 @@ class ArmorListViewModel : ViewModel() {
         get() = _armorList
 
 
-    private var filterTerm: String? = null
+    val filter = ArmorListFilterCriteria()
 
     fun loadArmorData() {
         viewModelScope.launch {
@@ -44,22 +46,48 @@ class ArmorListViewModel : ViewModel() {
     }
 
     fun updateFilterTerm(term: String?) {
-        if(filterTerm == term) return
-
-        filterTerm = term
-        if(filterTerm == null) {
+        filter.name = term
+        if(filter.isDefault()) {
             _armorList.postValue(armorListData)
             return
         }
 
-        val filtered = armorListData.filter {
-            it.name.contains(filterTerm!!, true)
+        updateFilteredArmor()
+    }
+
+    fun updateFilterResistance(elem: ElementType, enabled: Boolean) {
+        if(enabled) {
+            if(filter.resistTypes.contains(elem)) return
+            filter.resistTypes.add(elem)
+            updateFilteredArmor()
+        } else {
+            if(!filter.resistTypes.contains(elem)) return
+            filter.resistTypes.remove(elem)
+            updateFilteredArmor()
         }
-        _armorList.postValue(filtered)
+    }
+
+    fun updateFilterDamage(elem: ElementType, enabled: Boolean) {
+        if(enabled) {
+            if(filter.damageTypes.contains(elem)) return
+            filter.damageTypes.add(elem)
+            updateFilteredArmor()
+        } else {
+            if(!filter.damageTypes.contains(elem)) return
+            filter.damageTypes.remove(elem)
+            updateFilteredArmor()
+        }
     }
 
     private fun updateFilteredArmor() {
-
+        var filtered = armorListData.toList()
+        if(filter.name != null) {
+            filtered = filtered.filter { it.name.contains(filter.name!!, true) }
+        }
+        if(filter.resistTypes.isNotEmpty()) {
+            filtered = filtered.filter { it.hasResistances(filter.resistTypes) }
+        }
+        _armorList.postValue(filtered)
     }
 
     override fun onCleared() {

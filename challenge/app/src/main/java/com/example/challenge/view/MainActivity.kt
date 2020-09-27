@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewModel: ArmorListViewModel
     val adapter = ArmorListAdapter()
 
+    val filterSheet: FilterOptionsDialogSheet by lazy { FilterOptionsDialogSheet.build(viewModel) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         filter_options.setOnClickListener {
-            FilterOptionsDialogSheet.show(this.supportFragmentManager, viewModel)
+            FilterOptionsDialogSheet.show(filterSheet, this.supportFragmentManager)
         }
     }
 

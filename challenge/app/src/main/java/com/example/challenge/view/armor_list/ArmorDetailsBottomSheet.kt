@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.sheet_armor_details.*
 class ArmorDetailsBottomSheet(private val armorListViewModel: ArmorListViewModel, private val detailPiece: ArmorPiece) : BottomSheetFixedHeight() {
 
     companion object {
-        const val TAG = "episode_details"
+        const val TAG = "ARMOR_DETAILS"
 
         fun show(fragmentManager: FragmentManager, armorListViewModel: ArmorListViewModel, detailPiece: ArmorPiece): ArmorDetailsBottomSheet {
             val fragment = ArmorDetailsBottomSheet(armorListViewModel, detailPiece)
