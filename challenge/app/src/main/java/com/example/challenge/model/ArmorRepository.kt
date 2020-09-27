@@ -1,13 +1,14 @@
 package com.example.challenge.model
 
-import kotlinx.coroutines.*
-import kotlinx.serialization.ImplicitReflectionSerializer
-import java.net.URL
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.serialization.UnstableDefault
+import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
-import kotlinx.serialization.parseList
+import java.net.URL
 
-@ImplicitReflectionSerializer
 object ArmorRepository {
     suspend fun fetchArmorData(scope: CoroutineScope): List<ArmorPiece> {
         return try {
@@ -21,9 +22,11 @@ object ArmorRepository {
         }
     }
 
+    @UnstableDefault
     private fun fetchArmorDataImpl(): List<ArmorPiece> {
         val rawContent = URL("https://mhw-db.com/armor").readText()
         // lenient for ex: damageDragon="100+5%"
-        return Json(JsonConfiguration(isLenient = true)).parseList<ArmorPiece>(rawContent)
+        val config = JsonConfiguration(isLenient = true)
+        return Json(config).parse(ArmorPiece.serializer().list, rawContent)
     }
 }

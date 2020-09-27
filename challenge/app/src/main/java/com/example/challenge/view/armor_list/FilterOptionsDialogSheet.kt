@@ -8,11 +8,9 @@ import androidx.fragment.app.FragmentManager
 import com.example.challenge.R
 import com.example.challenge.view.abstracts.BottomSheetWrapHeight
 import com.example.challenge.viewmodel.ArmorListViewModel
-import kotlinx.serialization.ImplicitReflectionSerializer
 
-class FilterOptionsDialogSheet @ImplicitReflectionSerializer constructor(private val armorViewModel: ArmorListViewModel) : BottomSheetWrapHeight() {
+class FilterOptionsDialogSheet constructor(private val armorViewModel: ArmorListViewModel) : BottomSheetWrapHeight() {
 
-    @ImplicitReflectionSerializer
     companion object {
         private const val TAG = "donate"
 

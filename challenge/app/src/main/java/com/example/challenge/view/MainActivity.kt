@@ -1,13 +1,11 @@
 package com.example.challenge.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challenge.R
 import com.example.challenge.model.ArmorPiece
@@ -16,9 +14,7 @@ import com.example.challenge.view.armor_list.ArmorListAdapter
 import com.example.challenge.view.armor_list.FilterOptionsDialogSheet
 import com.example.challenge.viewmodel.ArmorListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.serialization.ImplicitReflectionSerializer
 
-@ImplicitReflectionSerializer
 class MainActivity : AppCompatActivity() {
 
     lateinit var viewModel: ArmorListViewModel

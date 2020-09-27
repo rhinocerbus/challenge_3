@@ -7,9 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.challenge.model.ArmorPiece
 import com.example.challenge.model.ArmorRepository
 import kotlinx.coroutines.launch
-import kotlinx.serialization.ImplicitReflectionSerializer
 
-@ImplicitReflectionSerializer
 class ArmorListViewModel : ViewModel() {
 
     companion object {

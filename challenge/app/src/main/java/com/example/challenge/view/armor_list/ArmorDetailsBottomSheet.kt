@@ -8,9 +8,7 @@ import com.example.challenge.model.ArmorPiece
 import com.example.challenge.view.abstracts.BottomSheetFixedHeight
 import com.example.challenge.viewmodel.ArmorListViewModel
 import kotlinx.android.synthetic.main.sheet_armor_details.*
-import kotlinx.serialization.ImplicitReflectionSerializer
 
-@ImplicitReflectionSerializer
 class ArmorDetailsBottomSheet(private val armorListViewModel: ArmorListViewModel, private val detailPiece: ArmorPiece) : BottomSheetFixedHeight() {
 
     companion object {
