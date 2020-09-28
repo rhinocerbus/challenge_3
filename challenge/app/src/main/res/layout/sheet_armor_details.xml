@@ -51,14 +51,15 @@
                     android:adjustViewBounds="true"
                     android:src="@drawable/img_armor_no" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/image_label"
                 style="@style/TextMedium.Details"
                 android:layout_width="match_parent"
-                android:textAlignment="center"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/images_heading"
-                android:text="  Male/Female"/>
+                android:text="  Male/Female"
+                android:textAlignment="center"
+                app:layout_constraintTop_toBottomOf="@id/images_heading" />
 
             <LinearLayout
                 android:id="@+id/content_body"
@@ -114,11 +115,28 @@
                         android:text="Other set pieces"
                         app:layout_constraintTop_toBottomOf="@+id/images" />
 
-                    <TextView
-                        android:id="@+id/set_bonus"
+                    <LinearLayout
+                        android:id="@+id/set_bonus_group"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:layout_constraintTop_toBottomOf="@+id/images" />
+                        android:orientation="horizontal"
+                        android:weightSum="6"
+                        app:layout_constraintTop_toBottomOf="@+id/images">
+
+                        <TextView
+                            style="@style/TextMedium.Details"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bonus:" />
+
+                        <TextView
+                            android:id="@+id/set_bonus"
+                            style="@style/TextMedium.Details"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/set_recycler"

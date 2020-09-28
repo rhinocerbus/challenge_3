@@ -29,6 +29,7 @@ class ArmorDetailsBottomSheet(private val armorListViewModel: ArmorListViewModel
 
     val summaryAdapter: ArmorListAdapter = ArmorListAdapter()
     val setAdapter: ArmorListAdapter = ArmorListAdapter()
+    val skillsAdapter: ArmorSkillAdapter = ArmorSkillAdapter()
     lateinit var itemSummary: ArmorListAdapter.ArmorPieceViewHolder
     val selectionUpdate = MutableLiveData<ArmorPiece>()
 
@@ -51,15 +52,15 @@ class ArmorDetailsBottomSheet(private val armorListViewModel: ArmorListViewModel
 
         val glide = Glide.with(this)
         if(detailPiece.assets != null) {
-            if(detailPiece.assets!!.imageFemale != null) {
-                glide.load(detailPiece.assets!!.imageFemale).into(armor_image_left)
-            } else {
-                glide.load(R.drawable.img_armor_no).into(armor_image_left)
-            }
             if(detailPiece.assets!!.imageMale != null) {
-                glide.load(detailPiece.assets!!.imageMale).into(armor_image_right)
+                glide.load(detailPiece.assets!!.imageMale).placeholder(R.drawable.img_armor_no).into(armor_image_left)
             } else {
                 glide.load(R.drawable.img_armor_no).into(armor_image_right)
+            }
+            if(detailPiece.assets!!.imageFemale != null) {
+                glide.load(detailPiece.assets!!.imageFemale).placeholder(R.drawable.img_armor_no).into(armor_image_right)
+            } else {
+                glide.load(R.drawable.img_armor_no).into(armor_image_left)
             }
         } else {
             glide.load(R.drawable.img_armor_no).into(armor_image_left)
@@ -81,13 +82,16 @@ class ArmorDetailsBottomSheet(private val armorListViewModel: ArmorListViewModel
             skills_group.visibility = View.GONE
         } else {
             skills_group.visibility = View.VISIBLE
+            skills_recycler.adapter = skillsAdapter
+            skillsAdapter.updateViewType(skills_recycler)
+            skillsAdapter.updateData(detailPiece.skills)
         }
 
         if(detailPiece.armorSet.bonus != null) {
-            set_bonus.visibility = View.VISIBLE
+            set_bonus_group.visibility = View.VISIBLE
             set_bonus.text = detailPiece.armorSet.bonus.toString()
         } else {
-            set_bonus.visibility = View.GONE
+            set_bonus_group.visibility = View.GONE
         }
 
         set_recycler.adapter = setAdapter

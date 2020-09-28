@@ -93,7 +93,79 @@ data class ArmorModifiers(val health: Int = -1, val attack: Int = -1, val defens
                           val damageFire: String? = null, val damageWater: String? = null,
                           val damageIce: String? = null, val damageThunder: String? = null, val damageDragon: String? = null,
                           val resistFire: String? = null, val resistWater: String? = null,
-                          val resistIce: String? = null, val resistThunder: String? = null, val resistDragon: String? = null)
+                          val resistIce: String? = null, val resistThunder: String? = null, val resistDragon: String? = null) {
+
+    fun getActiveModierStrings(): Pair<String, String>? {
+        var names = ""
+        var values = ""
+        if(health > 0) {
+            names += "/nHealth"
+            values += "/n${health}"
+        }
+        if(attack > 0) {
+            names += "/nAttack"
+            values += "/n${attack}"
+        }
+        if(defense > 0) {
+            names += "/nDefense"
+            values += "/n${defense}"
+        }
+        if(sharpnessBonus > 0) {
+            names += "/nSharpness"
+            values += "/n${sharpnessBonus}"
+        }
+        if(affinity > 0) {
+            names += "/nAffinity"
+            values += "/n${affinity}"
+        }
+        if(damageFire != null) {
+            names += "/nFire damage"
+            values += "/n${damageFire}"
+        }
+        if(damageWater != null) {
+            names += "/nWater damage"
+            values += "/n${damageWater}"
+        }
+        if(damageIce != null) {
+            names += "/nIce damage"
+            values += "/n${damageIce}"
+        }
+        if(damageThunder != null) {
+            names += "/nThunder damage"
+            values += "/n${damageThunder}"
+        }
+        if(damageDragon != null) {
+            names += "/nDragon damage"
+            values += "/n${damageDragon}"
+        }
+        if(resistFire != null) {
+            names += "/nFire resist"
+            values += "/n${resistFire}"
+        }
+        if(resistWater != null) {
+            names += "/nFire resist"
+            values += "/n${resistWater}"
+        }
+        if(resistIce != null) {
+            names += "/nFire resist"
+            values += "/n${resistIce}"
+        }
+        if(resistThunder != null) {
+            names += "/nFire resist"
+            values += "/n${resistThunder}"
+        }
+        if(resistDragon != null) {
+            names += "/nFire resist"
+            values += "/n${resistDragon}"
+        }
+        if(names.isNotEmpty()) {
+            names.drop(2)
+            values.drop(2)
+            return Pair(names, values)
+        }
+        return null
+    }
+}
 
 @kotlinx.serialization.Serializable
 data class ArmorSet(val id: Int, val rank: String, val name: String, val pieces: ArrayList<Int>,

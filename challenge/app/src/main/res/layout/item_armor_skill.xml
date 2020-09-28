@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/colorItemBackground"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_small">
+
+        <LinearLayout
+            android:id="@+id/info_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="8">
+
+            <TextView
+                android:id="@+id/skill_name"
+                style="@style/TextMedium.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                tools:text="Skill Name" />
+
+            <TextView
+                style="@style/TextMedium.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Level: " />
+
+            <TextView
+                android:id="@+id/skill_level"
+                style="@style/TextMedium.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                tools:text="5" />
+
+            <TextView
+                style="@style/TextMedium.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Skill: " />
+
+            <TextView
+                android:id="@+id/skill_skill"
+                style="@style/TextMedium.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                tools:text="5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/stats_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/modifier_names"
+                style="@style/TextMedium.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                tools:text="Health\nSharpness " />
+
+            <TextView
+                android:id="@+id/modifier_values"
+                style="@style/TextMedium.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                tools:text="50\n5" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/skill_description"
+            style="@style/TextMedium.Item"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_height="wrap_content"
+            tools:text="adsgadfhdhf dshfdsgh fgdshfdsgh dfghfgdh fdghewrhewrh rwthwrywrtnwr tnwrtnwernbsfdbsdfb dfsbsdfbrwtb " />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
