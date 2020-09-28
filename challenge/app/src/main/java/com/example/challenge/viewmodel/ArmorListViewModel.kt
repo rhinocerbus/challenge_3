@@ -40,7 +40,9 @@ class ArmorListViewModel : ViewModel() {
     val detailsPieceLiveData: LiveData<ArmorPiece>
         get() = _detailsPieceLiveData
 
-
+init {
+    loadArmorData()
+}
 
     fun loadArmorData() {
         viewModelScope.launch {

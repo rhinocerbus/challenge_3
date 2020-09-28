@@ -1,11 +1,9 @@
 package com.example.challenge.view.armor_list
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.MutableLiveData
+import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.example.challenge.R
 import com.example.challenge.model.ArmorPiece
@@ -13,26 +11,25 @@ import com.example.challenge.view.abstracts.BottomSheetFixedHeight
 import com.example.challenge.viewmodel.ArmorListViewModel
 import kotlinx.android.synthetic.main.sheet_armor_details.*
 
-class ArmorDetailsBottomSheet(private val armorListViewModel: ArmorListViewModel) : BottomSheetFixedHeight() {
+class ArmorDetailsBottomSheet : BottomSheetFixedHeight() {
 
     companion object {
         const val TAG = "ARMOR_DETAILS"
 
-        fun show(fragmentManager: FragmentManager, armorListViewModel: ArmorListViewModel): ArmorDetailsBottomSheet {
-            val fragment = ArmorDetailsBottomSheet(armorListViewModel)
+        fun show(fragmentManager: FragmentManager): ArmorDetailsBottomSheet {
+            val fragment = ArmorDetailsBottomSheet()
             fragment.show(fragmentManager, TAG)
             return fragment
         }
     }
 
+    private val armorViewModel: ArmorListViewModel by activityViewModels()
     lateinit var detailPiece: ArmorPiece
 
     val summaryAdapter: ArmorListAdapter = ArmorListAdapter()
     val setAdapter: ArmorListAdapter = ArmorListAdapter()
     val skillsAdapter: ArmorSkillAdapter = ArmorSkillAdapter()
     val craftingAdapter: CraftingAdapter = CraftingAdapter()
-    lateinit var itemSummary: ArmorListAdapter.ArmorPieceViewHolder
-    val selectionUpdate = MutableLiveData<ArmorPiece>()
 
     override fun getLayoutId(): Int {
         return R.layout.sheet_armor_details
@@ -49,7 +46,7 @@ class ArmorDetailsBottomSheet(private val armorListViewModel: ArmorListViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        detailPiece = armorListViewModel.detailsPieceLiveData.value!!
+        detailPiece = armorViewModel.detailsPieceLiveData.value!!
 
         val glide = Glide.with(this)
         if(detailPiece.assets != null) {
@@ -101,6 +98,6 @@ class ArmorDetailsBottomSheet(private val armorListViewModel: ArmorListViewModel
 
         set_recycler.adapter = setAdapter
         setAdapter.updateViewType(ArmorListAdapter.Companion.DISPLAYTYPE.ROWS, set_recycler)
-        setAdapter.updateData(armorListViewModel.getSetPieces(detailPiece))
+        setAdapter.updateData(armorViewModel.getSetPieces(detailPiece))
     }
 }

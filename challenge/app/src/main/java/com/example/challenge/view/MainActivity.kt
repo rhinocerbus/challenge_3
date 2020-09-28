@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewModel: ArmorListViewModel
     private val adapter = ArmorListAdapter()
 
-    private val filterSheet: FilterOptionsDialogSheet by lazy { FilterOptionsDialogSheet.build(viewModel) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         adapter.updateViewType(ArmorListAdapter.Companion.DISPLAYTYPE.ROWS, recycler)
         adapter.selectionUpdate.observe(this, Observer {
             viewModel.updateDetailPiece(it)
-            ArmorDetailsBottomSheet.show(this.supportFragmentManager, viewModel)
+            ArmorDetailsBottomSheet.show(this.supportFragmentManager)
         })
 
         Glide.with(this).asGif().load(R.raw.cat).into(loading_state);
@@ -52,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         filter_options.setOnClickListener {
-            FilterOptionsDialogSheet.show(filterSheet, this.supportFragmentManager)
+            FilterOptionsDialogSheet.show(supportFragmentManager)
         }
     }
 
@@ -61,8 +59,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.armorList.observe(this, Observer {
             bindArmorList(it)
         })
-
-        viewModel.loadArmorData()
     }
 
     private fun bindArmorList(armor: List<ArmorPiece>) {

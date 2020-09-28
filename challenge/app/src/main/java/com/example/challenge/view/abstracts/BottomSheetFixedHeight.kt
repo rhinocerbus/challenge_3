@@ -1,13 +1,10 @@
 package com.example.challenge.view.abstracts
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.example.challenge.R
 import com.example.challenge.view.getWindowDimensions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
