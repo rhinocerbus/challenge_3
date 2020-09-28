@@ -1,8 +1,5 @@
 package com.example.challenge.model
 
-import java.security.InvalidParameterException
-
-
 enum class ArmorType(val type: String) {
     HEAD("head"),
     CHEST("chest"),
@@ -53,25 +50,25 @@ data class ArmorPiece(
     }
 
     fun hasDamage(elems: Set<ElementType>): Boolean {
-        if(skills.size == 0) return false
+        if (skills.size == 0) return false
         val skillsCopy = skills.clone() as ArrayList<ArmorSkill>
         for (e in elems) {
             when (e) {
                 ElementType.FIRE -> if (skillsCopy.dropWhile {
-                    it.modifiers.damageFire == null
-                }.isEmpty()) return false
+                        it.modifiers.damageFire == null
+                    }.isEmpty()) return false
                 ElementType.WATER -> if (skillsCopy.dropWhile {
-                    it.modifiers.damageWater == null
-                }.isEmpty()) return false
+                        it.modifiers.damageWater == null
+                    }.isEmpty()) return false
                 ElementType.ICE -> if (skillsCopy.dropWhile {
-                    it.modifiers.damageIce == null
-                }.isEmpty()) return false
+                        it.modifiers.damageIce == null
+                    }.isEmpty()) return false
                 ElementType.THUNDER -> if (skillsCopy.dropWhile {
-                    it.modifiers.damageThunder == null
-                }.isEmpty()) return false
+                        it.modifiers.damageThunder == null
+                    }.isEmpty()) return false
                 ElementType.DRAGON -> if (skillsCopy.dropWhile {
-                    it.modifiers.damageDragon == null
-                }.isEmpty()) return false
+                        it.modifiers.damageDragon == null
+                    }.isEmpty()) return false
             }
         }
         return true
@@ -189,8 +186,9 @@ data class ArmorModifiers(
             values += "/n${resistDragon}"
         }
         if (names.isNotEmpty()) {
-            names.drop(2)
-            values.drop(2)
+            //indiscriminate newline, in case of multiple, can ignore order
+            names = names.drop(2)
+            values = values.drop(2)
             return Pair(names, values)
         }
         return null

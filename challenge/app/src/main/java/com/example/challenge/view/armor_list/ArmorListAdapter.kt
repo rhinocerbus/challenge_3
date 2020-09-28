@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +16,7 @@ import com.example.challenge.model.ArmorPiece
 import com.example.challenge.model.ArmorType
 import java.lang.ref.WeakReference
 
-class ArmorListAdapter: RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHolder>() {
+class ArmorListAdapter : RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHolder>() {
 
     companion object {
         enum class DISPLAYTYPE {
@@ -27,20 +26,21 @@ class ArmorListAdapter: RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHold
     }
 
     private val armorPieces: MutableList<ArmorPiece> = mutableListOf()
-
-    val selectionUpdate = MutableLiveData<ArmorPiece>()
+    val selectionLiveData = MutableLiveData<ArmorPiece>()
 
     init {
         setHasStableIds(true)
     }
 
     fun updateViewType(displayType: DISPLAYTYPE, recyclerView: RecyclerView) {
-        when(displayType) {
+        when (displayType) {
             DISPLAYTYPE.ROWS -> {
-                recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, LinearLayoutManager.VERTICAL, false)
+                recyclerView.layoutManager =
+                    LinearLayoutManager(recyclerView.context, LinearLayoutManager.VERTICAL, false)
             }
             DISPLAYTYPE.GRID -> {
-                recyclerView.layoutManager = GridLayoutManager(recyclerView.context, 5, GridLayoutManager.HORIZONTAL, false)
+                recyclerView.layoutManager =
+                    GridLayoutManager(recyclerView.context, 5, GridLayoutManager.HORIZONTAL, false)
             }
         }
     }
@@ -60,14 +60,18 @@ class ArmorListAdapter: RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHold
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArmorPieceViewHolder {
-        return ArmorPieceViewHolder(LayoutInflater.from(parent.context).inflate(ArmorPieceViewHolder.VIEW_ID, null), selectionUpdate)
+        return ArmorPieceViewHolder(
+            LayoutInflater.from(parent.context).inflate(ArmorPieceViewHolder.VIEW_ID, null),
+            selectionLiveData
+        )
     }
 
     override fun onBindViewHolder(holder: ArmorPieceViewHolder, position: Int) {
         holder.bindView(armorPieces[position])
     }
 
-    class ArmorPieceViewHolder(itemView: View, ld: MutableLiveData<ArmorPiece>): RecyclerView.ViewHolder(itemView) {
+    class ArmorPieceViewHolder(itemView: View, ld: MutableLiveData<ArmorPiece>) :
+        RecyclerView.ViewHolder(itemView) {
         companion object {
             val VIEW_ID = R.layout.item_armor_piece
         }
@@ -97,7 +101,7 @@ class ArmorListAdapter: RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHold
 
         init {
             itemView.setOnClickListener {
-                    ldHandle.get()?.postValue(armorPiece)
+                ldHandle.get()?.postValue(armorPiece)
             }
         }
 
@@ -117,7 +121,7 @@ class ArmorListAdapter: RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHold
             resThunder.text = armorPiece.resistances.thunder.toString()
             resDragon.text = armorPiece.resistances.dragon.toString()
 
-            when(armorPiece.slots.size) {
+            when (armorPiece.slots.size) {
                 0 -> {
                     slots.visibility = View.GONE
                     slot1.visibility = View.GONE
@@ -150,7 +154,7 @@ class ArmorListAdapter: RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHold
                 }
             }
 
-            val iconId = when(armorPiece.type) {
+            val iconId = when (armorPiece.type) {
                 ArmorType.HEAD.type -> R.drawable.ic_head
                 ArmorType.CHEST.type -> R.drawable.ic_chest
                 ArmorType.WAIST.type -> R.drawable.ic_waist

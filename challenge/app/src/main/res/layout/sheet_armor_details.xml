@@ -8,9 +8,10 @@
     android:background="@color/colorBackground"
     android:contentDescription="armor details"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:layout_height="600dp">
+    tools:layout_height="2400dp">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -73,6 +74,8 @@
                     android:id="@+id/summary_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_armor_piece"
                     android:layout_marginTop="@dimen/margin_small" />
 
                 <LinearLayout
@@ -95,10 +98,18 @@
                     android:layout_marginTop="@dimen/margin_small"
                     android:orientation="vertical">
 
+                    <TextView
+                        style="@style/TextMedium.Details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Armor Skill" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/skills_recycler"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_armor_skill"
+                        tools:itemCount="1"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -108,10 +119,18 @@
                     android:layout_marginTop="@dimen/margin_small"
                     android:orientation="vertical">
 
+                    <TextView
+                        style="@style/TextMedium.Details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Crafting Materials" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/crafting_recycler"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_crafting_material"
+                        tools:itemCount="1" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -125,8 +144,7 @@
                         style="@style/TextMedium.Details"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Other set pieces"
-                        app:layout_constraintTop_toBottomOf="@+id/images" />
+                        android:text="Other set pieces" />
 
                     <LinearLayout
                         android:id="@+id/set_bonus_group"

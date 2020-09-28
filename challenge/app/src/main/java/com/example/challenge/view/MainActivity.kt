@@ -15,6 +15,18 @@ import com.example.challenge.view.armor_list.FilterOptionsDialogSheet
 import com.example.challenge.viewmodel.ArmorListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * TODO - timeboxed:
+ * - add dynamic range filtering (rarity, level, etc.)
+ * - expand skill type filtering, crafting material
+ * -- optimize to crawl json for filter values
+ * - add sort options
+ * - additional coordinator jazz (quickreturn filter bar, item details expansion vs fixed)
+ * - improve landscape scaling
+ * -
+ * - ...weapons!
+ */
+
 class MainActivity : AppCompatActivity() {
 
     lateinit var viewModel: ArmorListViewModel
@@ -31,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun initUI() {
         recycler.adapter = adapter
         adapter.updateViewType(ArmorListAdapter.Companion.DISPLAYTYPE.ROWS, recycler)
-        adapter.selectionUpdate.observe(this, Observer {
+        adapter.selectionLiveData.observe(this, Observer {
             viewModel.updateDetailPiece(it)
             ArmorDetailsBottomSheet.show(this.supportFragmentManager)
         })
@@ -56,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewModels() {
         viewModel = ViewModelProvider(this).get(ArmorListViewModel::class.java)
-        viewModel.armorList.observe(this, Observer {
+        viewModel.armorListLiveData.observe(this, Observer {
             bindArmorList(it)
         })
     }

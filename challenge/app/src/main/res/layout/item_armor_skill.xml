@@ -7,19 +7,19 @@
     app:cardBackgroundColor="@color/colorItemBackground"
     app:cardUseCompatPadding="true">
 
-    <LinearLayout
+    <!-- could be a LinearLayout but width is halved/quartered, sometimes, for Reasons(TM) -->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
-        android:orientation="vertical"
         android:padding="@dimen/margin_small">
 
         <LinearLayout
-            android:id="@+id/info_row"
+            android:id="@+id/skill_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="8">
+            android:weightSum="9">
 
             <TextView
                 android:id="@+id/skill_name"
@@ -33,7 +33,7 @@
                 style="@style/TextMedium.Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.25"
                 android:text="Level: " />
 
             <TextView
@@ -48,7 +48,7 @@
                 style="@style/TextMedium.Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.25"
                 android:text="Skill: " />
 
             <TextView
@@ -56,17 +56,18 @@
                 style="@style/TextMedium.Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".5"
+                android:layout_weight="1"
                 tools:text="5" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/stats_row"
+            android:id="@+id/skill_stats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_medium"
             android:layout_marginTop="@dimen/margin_tiny"
             android:orientation="horizontal"
+            android:layout_below="@+id/skill_info"
             android:weightSum="5">
 
             <TextView
@@ -84,16 +85,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 tools:text="50\n5" />
-
         </LinearLayout>
 
         <TextView
             android:id="@+id/skill_description"
             style="@style/TextMedium.Item"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginStart="@dimen/margin_medium"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_below="@+id/skill_stats"
+            android:layout_marginTop="@dimen/margin_small"
             tools:text="adsgadfhdhf dshfdsgh fgdshfdsgh dfghfgdh fdghewrhewrh rwthwrywrtnwr tnwrtnwernbsfdbsdfb dfsbsdfbrwtb " />
-    </LinearLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

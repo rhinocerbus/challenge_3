@@ -23,12 +23,11 @@ abstract class BottomSheetFixedHeight : BottomSheetDialogFragment() {
 
         }
 
-        override fun onSlide(bottomSheet: View, slideOffset: Float) { }
+        override fun onSlide(bottomSheet: View, slideOffset: Float) {}
     }
 
-    abstract fun getLayoutId() : Int
+    abstract fun getLayoutId(): Int
     abstract fun getScreenHeightRatio(): Float
-    abstract fun getConetntViewGroup(): Int
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,12 +39,14 @@ abstract class BottomSheetFixedHeight : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+        view.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 view.viewTreeObserver.removeOnGlobalLayoutListener(this)
 
                 val dialog = dialog as BottomSheetDialog
-                val bottomSheet = dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+                val bottomSheet =
+                    dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
 
                 mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
                 mBottomSheetBehavior.setBottomSheetCallback(mBottomSheetBehaviorCallback)
@@ -55,9 +56,9 @@ abstract class BottomSheetFixedHeight : BottomSheetDialogFragment() {
                 mBottomSheetBehavior.peekHeight = 0
                 mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
 
-                    val height = (getScreenHeightRatio() * getWindowDimensions(requireActivity()).y).toInt()
-                    view.layoutParams.height = height
-                    //view.findViewById<ViewGroup>(getConetntViewGroup()).layoutParams.height = height
+                val height =
+                    (getScreenHeightRatio() * getWindowDimensions(requireActivity()).y).toInt()
+                view.layoutParams.height = height
             }
         })
     }

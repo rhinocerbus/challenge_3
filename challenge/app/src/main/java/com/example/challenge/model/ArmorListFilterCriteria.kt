@@ -1,7 +1,5 @@
 package com.example.challenge.model
 
-import android.util.ArraySet
-
 data class ArmorListFilterCriteria(
     var name: String? = null,
     val resistTypes: MutableSet<ElementType> = mutableSetOf(),
@@ -15,3 +13,12 @@ data class ArmorListFilterCriteria(
                 !hasSkill
     }
 }
+
+/*
+TODO
+        test screen rotate (done)
+        fix skills recycler shrink
+        probably also applies to crafting
+        gajau boots alpha doesnt show set piecesF
+
+ */

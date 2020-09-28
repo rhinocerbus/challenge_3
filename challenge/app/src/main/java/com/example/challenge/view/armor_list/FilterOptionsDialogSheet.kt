@@ -1,9 +1,7 @@
 package com.example.challenge.view.armor_list
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import com.example.challenge.R
@@ -11,15 +9,6 @@ import com.example.challenge.model.ElementType
 import com.example.challenge.view.abstracts.BottomSheetWrapHeight
 import com.example.challenge.viewmodel.ArmorListViewModel
 import kotlinx.android.synthetic.main.sheet_filter_options.*
-
-/**
- *
- * TODO:
- * - add dynamic range filtering (rarity, level, etc.)
- * - expand skill type filtering
- * -- optimize to crawl armor skills to populate skill types
- * - add sort options
- */
 
 class FilterOptionsDialogSheet : BottomSheetWrapHeight() {
 
@@ -33,15 +22,11 @@ class FilterOptionsDialogSheet : BottomSheetWrapHeight() {
         }
     }
 
-    private val armorViewModel: ArmorListViewModel  by activityViewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.sheet_filter_options, null)
+    override fun getLayoutId(): Int {
+        return R.layout.sheet_filter_options
     }
+
+    private val armorViewModel: ArmorListViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -86,18 +71,18 @@ class FilterOptionsDialogSheet : BottomSheetWrapHeight() {
     }
 
     private fun initFilterState() {
-        res_fire.isChecked = armorViewModel.filter.resistTypes.contains(ElementType.FIRE)
-        res_water.isChecked = armorViewModel.filter.resistTypes.contains(ElementType.WATER)
-        res_ice.isChecked = armorViewModel.filter.resistTypes.contains(ElementType.ICE)
-        res_thunder.isChecked = armorViewModel.filter.resistTypes.contains(ElementType.THUNDER)
-        res_dragon.isChecked = armorViewModel.filter.resistTypes.contains(ElementType.DRAGON)
+        res_fire.isChecked = armorViewModel.filterLiveData.value!!.resistTypes.contains(ElementType.FIRE)
+        res_water.isChecked = armorViewModel.filterLiveData.value!!.resistTypes.contains(ElementType.WATER)
+        res_ice.isChecked = armorViewModel.filterLiveData.value!!.resistTypes.contains(ElementType.ICE)
+        res_thunder.isChecked = armorViewModel.filterLiveData.value!!.resistTypes.contains(ElementType.THUNDER)
+        res_dragon.isChecked = armorViewModel.filterLiveData.value!!.resistTypes.contains(ElementType.DRAGON)
 
-        has_skill.isChecked = armorViewModel.filter.hasSkill
+        has_skill.isChecked = armorViewModel.filterLiveData.value!!.hasSkill
 
-        dmg_dragon.isChecked = armorViewModel.filter.damageTypes.contains(ElementType.FIRE)
-        dmg_water.isChecked = armorViewModel.filter.damageTypes.contains(ElementType.WATER)
-        dmg_ice.isChecked = armorViewModel.filter.damageTypes.contains(ElementType.ICE)
-        dmg_thunder.isChecked = armorViewModel.filter.damageTypes.contains(ElementType.THUNDER)
-        dmg_dragon.isChecked = armorViewModel.filter.damageTypes.contains(ElementType.DRAGON)
+        dmg_dragon.isChecked = armorViewModel.filterLiveData.value!!.damageTypes.contains(ElementType.FIRE)
+        dmg_water.isChecked = armorViewModel.filterLiveData.value!!.damageTypes.contains(ElementType.WATER)
+        dmg_ice.isChecked = armorViewModel.filterLiveData.value!!.damageTypes.contains(ElementType.ICE)
+        dmg_thunder.isChecked = armorViewModel.filterLiveData.value!!.damageTypes.contains(ElementType.THUNDER)
+        dmg_dragon.isChecked = armorViewModel.filterLiveData.value!!.damageTypes.contains(ElementType.DRAGON)
     }
 }

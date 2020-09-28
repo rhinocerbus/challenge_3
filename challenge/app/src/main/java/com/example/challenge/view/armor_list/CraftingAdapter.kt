@@ -3,18 +3,12 @@ package com.example.challenge.view.armor_list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.widget.ImageViewCompat
-import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.challenge.R
-import com.example.challenge.model.*
-import java.lang.ref.WeakReference
+import com.example.challenge.model.Crafting
+import com.example.challenge.model.Material
 
 class CraftingAdapter : RecyclerView.Adapter<CraftingAdapter.CraftingMaterialViewHolder>() {
 

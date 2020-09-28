@@ -56,7 +56,7 @@
                 style="@style/TextSmall.Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:textAllCaps="true"
                 tools:text="HIGH" />
 
@@ -72,7 +72,7 @@
                 style="@style/TextSmall.Item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight=".5"
                 android:textAllCaps="true"
                 tools:text="10" />
 

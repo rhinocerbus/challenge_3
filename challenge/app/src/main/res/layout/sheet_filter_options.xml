@@ -74,14 +74,6 @@
             android:orientation="vertical">
 
             <CheckBox
-                android:id="@+id/has_skill"
-                style="@style/TextSmall.Details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="Has Skill" />
-
-            <CheckBox
                 android:id="@+id/dmg_fire"
                 style="@style/TextSmall.Details"
                 android:layout_width="match_parent"
@@ -120,6 +112,14 @@
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="Dragon Damage" />
+
+            <CheckBox
+                android:id="@+id/has_skill"
+                style="@style/TextSmall.Details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Any Skill" />
 
         </LinearLayout>
     </LinearLayout>
