@@ -34,6 +34,14 @@ class ArmorListViewModel : ViewModel() {
 
     val filter = ArmorListFilterCriteria()
 
+
+    private var detailPiece: ArmorPiece? = null
+    private val _detailsPieceLiveData = MutableLiveData<ArmorPiece>()
+    val detailsPieceLiveData: LiveData<ArmorPiece>
+        get() = _detailsPieceLiveData
+
+
+
     fun loadArmorData() {
         viewModelScope.launch {
             armorListData.clear()
@@ -43,6 +51,12 @@ class ArmorListViewModel : ViewModel() {
             firstLoad = false
             _armorList.postValue(armorListData)
         }
+    }
+
+    fun updateDetailPiece(detailPiece: ArmorPiece?) {
+        this.detailPiece = detailPiece
+        if(detailPiece != null)
+            _detailsPieceLiveData.postValue(detailPiece)
     }
 
     fun updateFilterTerm(term: String?) {
@@ -88,6 +102,18 @@ class ArmorListViewModel : ViewModel() {
             filtered = filtered.filter { it.hasResistances(filter.resistTypes) }
         }
         _armorList.postValue(filtered)
+    }
+
+    fun getSetPieces(piece: ArmorPiece): ArrayList<ArmorPiece> {
+        val pieceIds = piece.armorSet.pieces
+        pieceIds.remove(piece.id)
+        val setPieces: ArrayList<ArmorPiece> = arrayListOf()
+        for(p in armorListData) {
+            if(pieceIds.contains(p.id)) {
+                setPieces.add(p)
+            }
+        }
+        return setPieces
     }
 
     override fun onCleared() {

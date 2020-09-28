@@ -26,7 +26,7 @@ enum class ElementType {
 }
 
 @kotlinx.serialization.Serializable
-data class ArmorPiece(val id: Long, val type: String, val rank: String, val rarity: Int,
+data class ArmorPiece(val id: Int, val type: String, val rank: String, val rarity: Int,
                       val defense: ArmorDefense, val resistances: ArmorResistances, val attributes: ArmorAttributes,
                       val name: String, val slots: ArrayList<ArmorSlot>, val skills: ArrayList<ArmorSkill>,
                       val armorSet: ArmorSet, val assets: ArmorAssets? = null, val crafting: Crafting) {
@@ -96,7 +96,7 @@ data class ArmorModifiers(val health: Int = -1, val attack: Int = -1, val defens
                           val resistIce: String? = null, val resistThunder: String? = null, val resistDragon: String? = null)
 
 @kotlinx.serialization.Serializable
-data class ArmorSet(val id: Int, val rank: String, val name: String, val pieces: IntArray,
+data class ArmorSet(val id: Int, val rank: String, val name: String, val pieces: ArrayList<Int>,
                     val bonus: Int? = -1)
 
 @kotlinx.serialization.Serializable

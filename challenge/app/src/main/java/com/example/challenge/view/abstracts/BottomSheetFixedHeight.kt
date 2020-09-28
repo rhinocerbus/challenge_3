@@ -1,14 +1,21 @@
 package com.example.challenge.view.abstracts
 
 import android.app.Dialog
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.example.challenge.R
 import com.example.challenge.view.getWindowDimensions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 abstract class BottomSheetFixedHeight : BottomSheetDialogFragment() {
 
+    private lateinit var mBottomSheetBehavior: BottomSheetBehavior<*>
     private val mBottomSheetBehaviorCallback = object : BottomSheetBehavior.BottomSheetCallback() {
 
         override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -24,23 +31,37 @@ abstract class BottomSheetFixedHeight : BottomSheetDialogFragment() {
 
     abstract fun getLayoutId() : Int
     abstract fun getScreenHeightRatio(): Float
+    abstract fun getConetntViewGroup(): Int
 
-    override fun setupDialog(dialog: Dialog, style: Int) {
-        val view = View.inflate(context, getLayoutId(), null)
-        dialog.setContentView(view)
-
-        val params = (view.parent as View).layoutParams as CoordinatorLayout.LayoutParams
-        val behavior = params.behavior
-
-        if (behavior != null && behavior is BottomSheetBehavior<*>) {
-            behavior.skipCollapsed = true
-            behavior.setBottomSheetCallback(mBottomSheetBehaviorCallback)
-            val height = (getScreenHeightRatio() * getWindowDimensions(requireActivity()).y).toInt()
-            behavior.peekHeight = height
-            //mContent.layoutParams.height = height
-            view.layoutParams.height = height
-        }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(getLayoutId(), null)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                view.viewTreeObserver.removeOnGlobalLayoutListener(this)
 
+                val dialog = dialog as BottomSheetDialog
+                val bottomSheet = dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+
+                mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
+                mBottomSheetBehavior.setBottomSheetCallback(mBottomSheetBehaviorCallback)
+
+                //dont want collapse state
+                mBottomSheetBehavior.skipCollapsed = true
+                mBottomSheetBehavior.peekHeight = 0
+                mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+
+                    val height = (getScreenHeightRatio() * getWindowDimensions(requireActivity()).y).toInt()
+                    view.layoutParams.height = height
+                    //view.findViewById<ViewGroup>(getConetntViewGroup()).layoutParams.height = height
+            }
+        })
+    }
 }

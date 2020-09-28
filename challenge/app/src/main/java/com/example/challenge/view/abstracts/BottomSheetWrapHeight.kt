@@ -33,7 +33,7 @@ abstract class BottomSheetWrapHeight : BottomSheetDialogFragment() {
 
                 val dialog = dialog as BottomSheetDialog
                 val bottomSheet = dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-                ResourcesCompat.getColor(view.context.resources, R.color.transparent, null)
+
                 mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
                 mBottomSheetBehavior.setBottomSheetCallback(mBottomSheetBehaviorCallback)
                 //scale with content size changes

@@ -18,9 +18,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     lateinit var viewModel: ArmorListViewModel
-    val adapter = ArmorListAdapter()
+    private val adapter = ArmorListAdapter()
 
-    val filterSheet: FilterOptionsDialogSheet by lazy { FilterOptionsDialogSheet.build(viewModel) }
+    private val filterSheet: FilterOptionsDialogSheet by lazy { FilterOptionsDialogSheet.build(viewModel) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity() {
         recycler.adapter = adapter
         adapter.updateViewType(ArmorListAdapter.Companion.DISPLAYTYPE.ROWS, recycler)
         adapter.selectionUpdate.observe(this, Observer {
-            ArmorDetailsBottomSheet.show(this.supportFragmentManager, viewModel, it)
+            viewModel.updateDetailPiece(it)
+            ArmorDetailsBottomSheet.show(this.supportFragmentManager, viewModel)
         })
 
         Glide.with(this).asGif().load(R.raw.cat).into(loading_state);

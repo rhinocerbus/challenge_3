@@ -56,7 +56,7 @@ class ArmorListAdapter: RecyclerView.Adapter<ArmorListAdapter.ArmorPieceViewHold
     }
 
     override fun getItemId(position: Int): Long {
-        return armorPieces[position].id
+        return armorPieces[position].id.toLong()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArmorPieceViewHolder {

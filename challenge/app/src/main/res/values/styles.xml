@@ -51,4 +51,10 @@
         <item name="android:textSize">@dimen/text_small_extra</item>
     </style>
 
+
+
+    <style name="TextMedium.Details" parent="TextMedium">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>
