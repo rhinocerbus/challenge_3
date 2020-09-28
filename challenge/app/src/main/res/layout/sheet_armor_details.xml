@@ -102,6 +102,19 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/crafting_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/crafting_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/set_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

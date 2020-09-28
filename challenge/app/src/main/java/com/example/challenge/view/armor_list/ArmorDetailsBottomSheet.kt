@@ -30,6 +30,7 @@ class ArmorDetailsBottomSheet(private val armorListViewModel: ArmorListViewModel
     val summaryAdapter: ArmorListAdapter = ArmorListAdapter()
     val setAdapter: ArmorListAdapter = ArmorListAdapter()
     val skillsAdapter: ArmorSkillAdapter = ArmorSkillAdapter()
+    val craftingAdapter: CraftingAdapter = CraftingAdapter()
     lateinit var itemSummary: ArmorListAdapter.ArmorPieceViewHolder
     val selectionUpdate = MutableLiveData<ArmorPiece>()
 
@@ -86,6 +87,10 @@ class ArmorDetailsBottomSheet(private val armorListViewModel: ArmorListViewModel
             skillsAdapter.updateViewType(skills_recycler)
             skillsAdapter.updateData(detailPiece.skills)
         }
+
+        crafting_recycler.adapter = craftingAdapter
+        craftingAdapter.updateViewType(crafting_recycler)
+        craftingAdapter.updateData(detailPiece.crafting)
 
         if(detailPiece.armorSet.bonus != null) {
             set_bonus_group.visibility = View.VISIBLE
