@@ -54,6 +54,10 @@ class FilterOptionsDialogSheet constructor(private val armorViewModel: ArmorList
             armorViewModel.updateFilterResistance(ElementType.DRAGON, isChecked)
         }
 
+        has_skill.setOnCheckedChangeListener { buttonView, isChecked ->
+            armorViewModel.updateFilterHasSkill(isChecked)
+        }
+
         dmg_fire.setOnCheckedChangeListener { buttonView, isChecked ->
             armorViewModel.updateFilterDamage(ElementType.FIRE, isChecked)
         }

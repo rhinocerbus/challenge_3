@@ -93,6 +93,11 @@ class ArmorListViewModel : ViewModel() {
         }
     }
 
+    fun updateFilterHasSkill(enabled: Boolean) {
+        filter.hasSkill = enabled
+        updateFilteredArmor()
+    }
+
     private fun updateFilteredArmor() {
         var filtered = armorListData.toList()
         if(filter.name != null) {
@@ -100,6 +105,12 @@ class ArmorListViewModel : ViewModel() {
         }
         if(filter.resistTypes.isNotEmpty()) {
             filtered = filtered.filter { it.hasResistances(filter.resistTypes) }
+        }
+        if(filter.hasSkill) {
+            filtered = filtered.filter { it.skills.size > 0 }
+        }
+        if(filter.damageTypes.isNotEmpty()) {
+            filtered = filtered.filter { it.hasDamage(filter.damageTypes) }
         }
         _armorList.postValue(filtered)
     }
