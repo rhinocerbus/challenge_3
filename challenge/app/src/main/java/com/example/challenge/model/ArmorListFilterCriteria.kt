@@ -13,12 +13,3 @@ data class ArmorListFilterCriteria(
                 !hasSkill
     }
 }
-
-/*
-TODO
-        test screen rotate (done)
-        fix skills recycler shrink
-        probably also applies to crafting
-        gajau boots alpha doesnt show set piecesF
-
- */
