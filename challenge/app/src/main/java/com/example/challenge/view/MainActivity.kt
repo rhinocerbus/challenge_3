@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  * - add sort options
  * - additional coordinator jazz (quickreturn filter bar, item details expansion vs fixed)
  * - improve landscape scaling
- * -
+ * - expand details stats breakdown
  * - ...weapons!
  */
 
@@ -74,6 +74,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindArmorList(armor: List<ArmorPiece>) {
+        //sometines takes a second, show the right cat
+        Glide.with(this).asGif().load(R.raw.cat).into(loading_state);
         adapter.updateData(armor)
 
         if (armor.isEmpty()) {

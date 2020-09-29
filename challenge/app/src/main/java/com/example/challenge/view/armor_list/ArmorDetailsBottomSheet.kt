@@ -68,30 +68,30 @@ class ArmorDetailsBottomSheet : BottomSheetFixedHeight() {
     private fun bindUI() {
         val glide = Glide.with(this)
         if (detailPiece.assets != null) {
-            if (detailPiece.assets!!.imageMale != null) {
+            if (detailPiece.assets!!.imageMale == null) {
+                glide.load(R.drawable.cat_error).into(armor_image_right)
+            } else {
                 glide.load(detailPiece.assets!!.imageMale).thumbnail(Glide.with(this).load(R.raw.cat2))
-                    .into(armor_image_left)
-            } else {
-                glide.load(R.drawable.img_armor_no).into(armor_image_right)
+                    .into(armor_image_left).onLoadFailed(resources.getDrawable(R.drawable.cat_error))
             }
-            if (detailPiece.assets!!.imageFemale != null) {
-                glide.load(detailPiece.assets!!.imageFemale).thumbnail(Glide.with(this).load(R.raw.cat2))
-                    .into(armor_image_right)
+            if (detailPiece.assets!!.imageFemale == null) {
+                glide.load(R.drawable.cat_error).into(armor_image_left)
             } else {
-                glide.load(R.drawable.img_armor_no).into(armor_image_left)
+                glide.load(detailPiece.assets!!.imageFemale).thumbnail(Glide.with(this).load(R.raw.cat2))
+                    .into(armor_image_right).onLoadFailed(resources.getDrawable(R.drawable.cat_error))
             }
         } else {
-            glide.load(R.drawable.img_armor_no).into(armor_image_left)
-            glide.load(R.drawable.img_armor_no).into(armor_image_right)
+            glide.load(R.drawable.cat_error).into(armor_image_left)
+            glide.load(R.drawable.cat_error).into(armor_image_right)
         }
 
         summaryAdapter.updateData(arrayListOf(detailPiece))
 
-        if (detailPiece.attributes.requiredGender != null) {
+        if (detailPiece.attributes.requiredGender == null) {
+            attribute_group.visibility = View.GONE
+        } else {
             attribute_group.visibility = View.VISIBLE
             attribute_gender.text = detailPiece.attributes.requiredGender
-        } else {
-            attribute_group.visibility = View.GONE
         }
 
         if (detailPiece.skills.isEmpty()) {
@@ -103,15 +103,26 @@ class ArmorDetailsBottomSheet : BottomSheetFixedHeight() {
             skillsAdapter.updateData(detailPiece.skills)
         }
 
-        craftingAdapter.updateData(detailPiece.crafting)
-
-        if (detailPiece.armorSet.bonus != null) {
-            set_bonus_group.visibility = View.VISIBLE
-            set_bonus.text = detailPiece.armorSet.bonus.toString()
+        if(detailPiece.crafting.materials.isEmpty()) {
+            crafting_group.visibility = View.GONE
         } else {
-            set_bonus_group.visibility = View.GONE
+            crafting_group.visibility = View.VISIBLE
+            craftingAdapter.updateData(detailPiece.crafting)
         }
 
-        setAdapter.updateData(armorViewModel.getSetPieces(detailPiece))
+        if (detailPiece.armorSet.bonus == null) {
+            set_bonus_group.visibility = View.GONE
+        } else {
+            set_bonus_group.visibility = View.VISIBLE
+            set_bonus.text = detailPiece.armorSet.bonus.toString()
+        }
+
+        val otherSetPieces = armorViewModel.getSetPieces(detailPiece)
+        if(otherSetPieces.isEmpty()) {
+            set_group.visibility = View.GONE
+        } else {
+            set_group.visibility = View.VISIBLE
+            setAdapter.updateData(otherSetPieces)
+        }
     }
 }

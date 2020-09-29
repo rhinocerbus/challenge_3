@@ -54,7 +54,8 @@ class ArmorListViewModel : ViewModel() {
             val a = ArmorRepository.fetchArmorData(this)
             armorListData.addAll(a)
             firstLoad = false
-            _armorListLiveData.postValue(armorListData)
+            //catch while-loading filter changes
+            updateFilteredArmor()
         }
     }
 
